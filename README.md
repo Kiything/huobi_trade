@@ -102,7 +102,6 @@ balance = hb.get_balance('usdt')
 symbols = hb.get_symbols()
 '''
           quote-currency  price-precision  amount-precision  value-precision  min-order-value  sell-market-min-order-amt
-
 hcbtc                btc                8                 4                8           0.0001                     0.0100
 rvnbtc               btc               10                 2                8           0.0001                     1.0000
 insurusdt           usdt                4                 4                8           5.0000                     0.0001
