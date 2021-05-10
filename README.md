@@ -101,7 +101,7 @@ balance = hb.get_balance('usdt')
 #获取交易对精度信息，只获取TradePair内的值
 symbols = hb.get_symbols()
 '''
-            quote-currency  price-precision  amount-precision  value-precision  min-order-value  sell-market-min-order-amt
+          quote-currency  price-precision  amount-precision  value-precision  min-order-value  sell-market-min-order-amt
 
 hcbtc                btc                8                 4                8           0.0001                     0.0100
 rvnbtc               btc               10                 2                8           0.0001                     1.0000
