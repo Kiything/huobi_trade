@@ -55,7 +55,7 @@ order_details = huobi_trade.trade.get_order_details('272249503181077')
 real_fees = huobi_trade.trade.get_real_fees('272249503181077')
 ```
 
-* 最底层的高阶例子 (spi_test.py)  
+* 最底层的高阶例子 (api_test.py)  
 ```python
 hb = HuobiData(huobi_access_key=access_key, huobi_secret_key=secret_key)
 
