@@ -106,12 +106,12 @@ sell_billno = hb.sell_order(code='doge.usdt', amount=coin_amount)   #市价卖�
 find_order = hb.find_order('272249503181077')                         #入参是成交单号
 #订单详情返回值
 {
-        "id": 272249503181077,"symbol": "btcusdt","account-id": 754585,
-	"client-order-id": "20210508-150246-731828","amount": "10.000000000000000000",
-	"price": "0.0","created-at": 1620457349520,"type": "buy-market",
-	"field-amount": "0.000173342760868287","field-cash-amount": "9.999999999999956351",
-	"field-fees": "0.000000346685521737","finished-at": 1620457349539,
-	"source": "spot-api","state": "filled","canceled-at": 0
+    "id": 272249503181077,"symbol": "btcusdt","account-id": 754585,
+    "client-order-id": "20210508-150246-731828","amount": "10.000000000000000000",
+    "price": "0.0","created-at": 1620457349520,"type": "buy-market",
+    "field-amount": "0.000173342760868287","field-cash-amount": "9.999999999999956351",
+    "field-fees": "0.000000346685521737","finished-at": 1620457349539,
+    "source": "spot-api","state": "filled","canceled-at": 0
 }
 ```
 
