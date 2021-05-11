@@ -110,7 +110,12 @@ find_order = hb.find_order('272249503181077')                         #入参是
 ```python
 #获取成交明细
 order_details = hb.get_order_details('272249503181077')               #入参是单号
-#详细返回参数请参考 https://huobiapi.github.io/docs/spot/v1/cn/#56c6c47284 
+#成交明细返回值
+[{"fee-currency": "btc", "symbol": "btcusdt", "trade-id": 102415396093,
+  "match-id": 127130574857, "source": "spot-api", "role": "taker",
+  "order-id": 272249503181077, "price": "57689.17", "created-at": 1620457349541,
+  "filled-amount": "0.000173342760868287", "fee-deduct-currency": "", "fee-deduct-state": "done",
+  "filled-fees": "0.000000346685521737", "filled-points": "0.0", "id": 267299340030943, "type": "buy-market"}]
 ```
 
 ```python
