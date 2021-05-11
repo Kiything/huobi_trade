@@ -90,31 +90,37 @@ uni2susdt           usdt                6                 4                8    
 ```
 
 ```python 
+#市价委托下单买
 buy_billno = hb.buy_order(code='doge.usdt', amount=10.00)           #用usdt市价买入币doge
 ```
 
 ```python 
+#市价委托下单卖
 coin_amount = hb.get_balance('doge')                                #查询出doge的余额  
 sell_billno = hb.sell_order(code='doge.usdt', amount=coin_amount)   #市价卖出doge币
 ```
 
 ```python
-find_order = hb.find_order('272249503181077')     #查询订单详情 入参是单号
+#查询订单详情 
+find_order = hb.find_order('272249503181077')                         #入参是单号
 #详细返回参数请参考 https://huobiapi.github.io/docs/spot/v1/cn/#92d59b6aad
 ```
 
 ```python
-order_details = hb.get_order_details('272249503181077') #获取成交明细 入参是单号
+#获取成交明细
+order_details = hb.get_order_details('272249503181077')               #入参是单号
 #详细返回参数请参考 https://huobiapi.github.io/docs/spot/v1/cn/#56c6c47284 
 ```
 
 ```python
-order_detail = hb.set_algo_order(code='ada.usdt', orderValue='10', stopPrice='1.5') #策略委托市价下单
+#策略委托市价下单
+order_detail = hb.set_algo_order(code='ada.usdt', orderValue='10', stopPrice='1.5') 
 #策略委托市价下单返回值 {'clientOrderId': '20210510-154908-999949'}
 ```
 
 ```python
-cancel_detail = hb.cancel_algo_order(['20210510-154908-999949'])  #策略委托撤单
+#策略委托撤单
+cancel_detail = hb.cancel_algo_order(['20210510-154908-999949'])  
 #策略委托撤单返回值 撤销成功的单号在accepted列表里，撤销失败的单号在rejected列表里
 #{'accepted': ['20210510-154908-999949'], 'rejected': []}
 ```
