@@ -11,9 +11,9 @@
 * get_amount() 获取币的账户余额
 
 ## 最简单的例子,开箱即用 (trade_app.py)  
-  btc的买入和卖出，以及查询账户余额
-
+  
 ```python
+# btc的买入和卖出，以及查询账户余额
 from huobi_trade_api import HuobiData
 from tools import *
 
@@ -47,9 +47,7 @@ sell_json = huobi_trade.order_target(coin_code, amount)     #卖出当前持仓�
 
 
 
-
-
-## 最基础的高阶例子 (api_test.py)  
+## 最底层的高阶例子 (api_test.py)  
 ```python
 
 from huobi_trade_api import HuobiData
