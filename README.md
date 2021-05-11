@@ -75,19 +75,16 @@ balance = hb.get_balance('usdt')               #查询币种余额 如btc,usdt,d
 symbols = hb.get_symbols()    #获取交易对精度信息，只获取TradePair内的值
 ```
 
-```
-          quote-currency  price-precision  amount-precision  value-precision  min-order-value  sell-market-min-order-amt
-hcbtc                btc                8                 4                8           0.0001                     0.0100
-rvnbtc               btc               10                 2                8           0.0001                     1.0000
-insurusdt           usdt                4                 4                8           5.0000                     0.0001
-snxusdt             usdt                4                 2                8           5.0000                     0.0100
-actbtc               btc               10                 2                8           0.0001                     0.1000
-linabtc              btc               10                 2                8           0.0001                     0.1000
-renbtcbtc            btc                4                 4                8           0.0001                     0.0001
-arusdt              usdt                4                 2                8           5.0000                     0.0010
-thetausdt           usdt                4                 4                8           5.0000                     0.1000
-uni2susdt           usdt                6                 4                8           5.0000                     0.0010
-```
+|     quote-currency |  price-precision |  amount-precision|   value-precision  | min-order-value  | sell-market-min-order-amt| 
+| ----------- | :------- | :----- | ---: | ---: | ---: |
+|hcbtc             |    btc        |         8      |            4  |               8  |          0.0001 |                     0.0100| 
+|rvnbtc            |    btc        |        10      |            2    |             8       |     0.0001        |              1.0000| 
+|insurusdt       |     usdt         |        4             |     4         |        8        |    5.0000       |               0.0001| 
+|snxusdt       |       usdt        |         4         |         2   |              8       |     5.0000       |               0.0100| 
+|actbtc        |        btc       |         10      |            2       |          8     |       0.0001    |                  0.1000| 
+|arusdt         |      usdt         |        4       |           2       |          8     |       5.0000    |                  0.0010| 
+|thetausdt     |       usdt        |         4       |           4        |         8     |       5.0000    |                  0.1000| 
+
 
 ```python 
 #市价委托下单买
