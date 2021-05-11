@@ -1,4 +1,4 @@
-# 火币网交易接口的简单封装
+# 火币网交易接口的最简封装（只管用，不用再关注细节）
 提供火币网交易接口的python封装，提供买入、卖出、查询账户余额等接口
 
 ### 接口说明
@@ -37,32 +37,20 @@ sell_json = huobi_trade.order_target(coin_code, amount)     #卖出当前持仓�
 
 ```
 
-```python
 
-#查询当前未成交订单 入参是定义的交易对
-#详细返回参数请参考 https://huobiapi.github.io/docs/spot/v1/cn/#95f2078356
-open_order = huobi_trade.trade.check_open_order(coin_code)
-
-#查询订单详情 入参是单号
-#详细返回参数请参考 https://huobiapi.github.io/docs/spot/v1/cn/#92d59b6aad
-find_order = huobi_trade.trade.find_order('272249503181077')
-
-#获取成交明细 入参是单号
-#详细返回参数请参考 https://huobiapi.github.io/docs/spot/v1/cn/#56c6c47284
-order_details = huobi_trade.trade.get_order_details('272249503181077')
-
-#根据成交单号获取真实扣费情况 入参是单号
-real_fees = huobi_trade.trade.get_real_fees('272249503181077')
-```
 
 * 最底层的高阶例子 (api_test.py)  
 ```python
-hb = HuobiData(huobi_access_key=access_key, huobi_secret_key=secret_key)
 
-#账号查询 get_api_user_info
-user_info = hb.get_api_user_info()
-#返回的账户信息
+from huobi_trade_api import HuobiData
+from tools import *
+
+hb = HuobiData(huobi_access_key=access_key, huobi_secret_key=secret_key)
+user_info = hb.get_api_user_info()            #账号查询 get_api_user_info
 '''
+
+>返回的账户信息
+```
     [
         {'id': 754585, 'type': 'spot', 'subtype': '', 'state': 'working'}, 
         {'id': 20605202, 'type': 'otc', 'subtype': '', 'state': 'working'}
