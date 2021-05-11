@@ -49,18 +49,21 @@ from tools import *
 
 hb = HuobiData(huobi_access_key=access_key, huobi_secret_key=secret_key)
 user_info = hb.get_api_user_info()            #账号查询 get_api_user_info
+ #    返回的账户信息
+ #   [ {'id': 754585, 'type': 'spot', 'subtype': '', 'state': 'working'}, 
+ #     {'id': 20605202, 'type': 'otc', 'subtype': '', 'state': 'working'}  ]
 ```
 
 ```
  # 返回的账户信息
     [ {'id': 754585, 'type': 'spot', 'subtype': '', 'state': 'working'}, 
       {'id': 20605202, 'type': 'otc', 'subtype': '', 'state': 'working'}  ]
-'''
+```
 
 # 获取账号余额
 user_balance = hb.get_api_user_balance()
 # 返回的账号余额信息
-'''
+```
     {
     "id": 754585,
     "type": "spot",
@@ -78,7 +81,7 @@ user_balance = hb.get_api_user_balance()
         }
     ]
     }
-'''
+```
 
 #获取账户估值 可选BTC,CNY,USD
 amount = hb.get_amount_valuation(currency='CNY')
@@ -88,7 +91,7 @@ balance = hb.get_balance('usdt')
 
 #获取交易对精度信息，只获取TradePair内的值
 symbols = hb.get_symbols()
-'''
+```
           quote-currency  price-precision  amount-precision  value-precision  min-order-value  sell-market-min-order-amt
 hcbtc                btc                8                 4                8           0.0001                     0.0100
 rvnbtc               btc               10                 2                8           0.0001                     1.0000
@@ -100,7 +103,7 @@ renbtcbtc            btc                4                 4                8    
 arusdt              usdt                4                 2                8           5.0000                     0.0010
 thetausdt           usdt                4                 4                8           5.0000                     0.1000
 uni2susdt           usdt                6                 4                8           5.0000                     0.0010
-'''
+```
 
 #现货交易
 buy_billno = hb.buy_order(code='doge.usdt', amount=10.00)           #用usdt市价买入币doge
