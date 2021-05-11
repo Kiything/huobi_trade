@@ -10,7 +10,7 @@
 {'单号': '272229722396768', '成交数量': 0.000177, '成交金额': 9.93279219, '扣手续费': 0.01986558438, '平均价格': 56229.7}
 * get_amount() 获取币的账户余额
 
-* 最简单的例子 (trade_app.py)  
+* 最简单的例子,开箱即用 (trade_app.py)  
   btc的买入和卖出，以及查询账户余额
 
 ```python
@@ -30,8 +30,11 @@ buy_json = huobi_trade.order_value(coin_code, init_money)   #用1000USDT 买入b
 #  buy_json 返回字典类型，买入成交回报：
 # {'单号':'2722295','成交数量':0.000177,'成交金额':'10.0000','扣手续费':3.562403,'平均价格':56497.18}
 
+
 amount = huobi_trade.trade.get_amount(coin_code)            #查询btc.usdt交易对的数量,有精度控制
 print('当前账户%s数量:' % (coin_code) + str(amount))
+
+
 
 sell_json = huobi_trade.order_target(coin_code, amount)     #卖出当前持仓所有btc
 # sell_json 返回字典类型，卖出成交回报：
@@ -41,7 +44,10 @@ sell_json = huobi_trade.order_target(coin_code, amount)     #卖出当前持仓�
 
 
 
-* 最底层的高阶例子 (api_test.py)  
+
+
+
+* 最基础的高阶例子 (api_test.py)  
 ```python
 
 from huobi_trade_api import HuobiData
@@ -80,9 +86,7 @@ symbols = hb.get_symbols()    #获取交易对精度信息，只获取TradePair�
 |hcbtc             |    btc        |         8      |            4  |               8  |          0.0001 |                     0.0100| 
 |rvnbtc            |    btc        |        10      |            2    |             8       |     0.0001        |              1.0000| 
 |insurusdt       |     usdt         |        4             |     4         |        8        |    5.0000       |               0.0001| 
-|snxusdt       |       usdt        |         4         |         2   |              8       |     5.0000       |               0.0100| 
 |actbtc        |        btc       |         10      |            2       |          8     |       0.0001    |                  0.1000| 
-|arusdt         |      usdt         |        4       |           2       |          8     |       5.0000    |                  0.0010| 
 |thetausdt     |       usdt        |         4       |           4        |         8     |       5.0000    |                  0.1000| 
 
 
