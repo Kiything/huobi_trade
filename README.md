@@ -49,8 +49,7 @@ from tools import *
 
 hb = HuobiData(huobi_access_key=access_key, huobi_secret_key=secret_key)
 user_info = hb.get_api_user_info()            #账号查询 get_api_user_info
-'''
-
+```
 
 ```
  # 返回的账户信息
