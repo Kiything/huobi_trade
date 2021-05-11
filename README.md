@@ -14,6 +14,8 @@
   btc的买入和卖出，以及查询账户余额
 
 ```python
+from huobi_trade_api import HuobiData
+from tools import *
 
 #自己的火币账户的access_key, secret_key (火币每个主账号能创建200个子账号，尽量使用子账号操作,防范风险)
 access_key = 'XXXXXXXXXXXXXXXXXXXX'
@@ -49,12 +51,11 @@ hb = HuobiData(huobi_access_key=access_key, huobi_secret_key=secret_key)
 user_info = hb.get_api_user_info()            #账号查询 get_api_user_info
 '''
 
->返回的账户信息
+
 ```
-    [
-        {'id': 754585, 'type': 'spot', 'subtype': '', 'state': 'working'}, 
-        {'id': 20605202, 'type': 'otc', 'subtype': '', 'state': 'working'}
-    ]
+ # 返回的账户信息
+    [ {'id': 754585, 'type': 'spot', 'subtype': '', 'state': 'working'}, 
+      {'id': 20605202, 'type': 'otc', 'subtype': '', 'state': 'working'}  ]
 '''
 
 # 获取账号余额
