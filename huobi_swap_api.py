@@ -10,8 +10,7 @@ import requests
 
 #火币USDT本位永续合约接口
 class HuobiSwap:
-    # timeout in 5 seconds:
-    TIMEOUT = 5
+    TIMEOUT = 5   # timeout in 5 seconds
     def __init__(self,url,access_key,secret_key):
         self.__url = url
         self.__access_key = access_key
@@ -209,7 +208,8 @@ class HuobiSwap:
     # 获取聚合行情
     def get_contract_market_merged(self, contract_code):
         """
-        :contract_code	    "BTC_CW","BTC_NW", "BTC_CQ" ...
+        参数名称	是否必须	类型	描述	取值范围
+        contract_code	false	string	合约代码	"BTC-USDT",不填查询所有合约
         """
         params = {'contract_code': contract_code}
     
@@ -220,7 +220,8 @@ class HuobiSwap:
     # 获取市场最近成交记录
     def get_contract_trade(self, contract_code):
         """
-        :param symbol: 可选值：{ BTC_CW, BTC_NW, BTC_CQ, etc. }
+        参数名称	是否必须	类型	描述	取值范围
+        contract_code	false	string	合约代码	"BTC-USDT",不填查询所有合约
         :return:
         """
         params = {'contract_code': contract_code}
@@ -232,7 +233,8 @@ class HuobiSwap:
     # 批量获取最近的交易记录
     def get_contract_batch_trade(self, contract_code, size=1):
         """
-        :param contract_code: 可选值：{ BTC_CW, BTC_NW, BTC_CQ, etc. }, size: int
+        参数名称	是否必须	类型	描述	取值范围
+        contract_code	false	string	合约代码	"BTC-USDT",不填查询所有合约
         :return:
         """
         params = {'contract_code': contract_code,
@@ -371,11 +373,10 @@ class HuobiSwap:
     # 撤销订单
     def swap_cancel(self, contract_code, order_id='', client_order_id=''):
         """
-        参数名称          是否必须 类型     描述
-        symbol           true   string  BTC, ETH, ...
-        order_id	         false  string  订单ID（ 多个订单ID中间以","分隔,一次最多允许撤消50个订单 ）
-        client_order_id  false  string  客户订单ID(多个订单ID中间以","分隔,一次最多允许撤消50个订单)
-        备注： order_id 和 client_order_id都可以用来撤单，同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。
+        参数名称	是否必须	类型	描述	取值范围
+        order_id	false (请看备注)	string	订单ID(多个订单ID中间以","分隔,一次最多允许撤消10个订单)	
+        client_order_id	false (请看备注)	string	客户订单ID(多个订单ID中间以","分隔,一次最多允许撤消10个订单)	
+        contract_code	true	string	合约代码
         """
         
         params = {"contract_code": contract_code}
@@ -388,25 +389,31 @@ class HuobiSwap:
         return self.api_key_post(self.__url, request_path, params, self.__access_key, self.__secret_key)
     
     # 全部撤单
-    def cancel_all_contract_order(self, symbol):
+    def swap_cancelall(self, contract_code, direction=None, offset=None):
         """
-        symbol: BTC, ETH, ...
+        参数名称	是否必须	类型	描述	取值范围
+        contract_code	true	string	合约代码	"BTC-USDT"
+        direction	false	string	买卖方向（不填默认全部）	"buy":买 "sell":卖
+        offset	false	string	开平方向（不填默认全部）
         """
         
-        params = {"symbol": symbol}
+        params = {"contract_code": contract_code}
+        if direction:
+            params["direction"] = direction
+        if offset:
+            params["offset"] = offset
     
-        request_path = '/api/v1/contract_cancelall'
+        request_path = '/linear-swap-api/v1/swap_cancelall'
         return self.api_key_post(self.__url, request_path, params, self.__access_key, self.__secret_key)
     
     
     # 获取合约订单信息(该接口仅支持逐仓模式)
     def get_swap_order_info(self, contract_code, order_id='', client_order_id=''):
         """
-        参数名称	        是否必须	类型	    描述
-        symbol          true    string  BTC, ETH, ...
-        order_id	        false	string	订单ID（ 多个订单ID中间以","分隔,一次最多允许查询20个订单 ）
-        client_order_id	false	string	客户订单ID(多个订单ID中间以","分隔,一次最多允许查询20个订单)
-        备注：order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。
+        参数名称	是否必须	类型	描述	取值范围
+        order_id	false（请看备注）	string	订单ID(多个订单ID中间以","分隔,一次最多允许查询50个订单)	
+        client_order_id	false（请看备注）	string	客户订单ID(多个订单ID中间以","分隔,一次最多允许查询50个订单)	
+        contract_code	true	string	合约代码
         """
         
         params = {"contract_code": contract_code}
@@ -422,13 +429,13 @@ class HuobiSwap:
     # 获取合约订单明细信息
     def get_swap_order_detail(self, contract_code, order_id, order_type, created_at, page_index=None, page_size=None):
         """
-        参数名称     是否必须  类型    描述
-        symbol      true	    string "BTC","ETH"...
-        order_id    true	    long	   订单id
-        order_type  true    int    订单类型。1:报单， 2:撤单， 3:爆仓， 4:交割
-        created_at  true    number 订单创建时间
-        page_index  false   int    第几页,不填第一页
-        page_size   false   int    不填默认20，不得多于50
+        参数名称	是否必须	类型	描述	取值范围
+        contract_code	true	string	合约代码	"BTC-USDT"...
+        order_id	true	long	订单id	
+        created_at	false	long	下单时间戳	
+        order_type	false	int	订单类型	1:报单 、 2:撤单 、 3:强平、4:交割
+        page_index	false	int	第几页,不填第一页	
+        page_size	false	int	不填默认20，不得多于50	
         """
         
         params = {"contract_code": contract_code,
@@ -503,10 +510,12 @@ class HuobiSwap:
     #【逐仓】获取历史成交记录
     def get_swap_matchresults(self, contract_code=None, trade_type=0, create_date=10, page_index=None, page_size=None):
         """
-        参数名称     是否必须  类型   描述
-        symbol      false   string "BTC","ETH"...
-        page_index  false   int    第几页,不填第一页
-        page_size   false   int    不填默认20，不得多于50
+        参数名称	是否必须	类型	描述	取值范围
+        contract_code	true	string	合约代码	"BTC-USDT"...
+        trade_type	true	int	交易类型	0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平
+        create_date	true	int	日期	可随意输入正整数，如果参数超过90则默认查询90天的数据
+        page_index	false	int	页码，不填默认第1页	
+        page_size	false	int	不填默认20，不得多于50	
         """
         
         params = {}
