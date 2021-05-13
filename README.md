@@ -144,9 +144,11 @@ cancel_detail = hb.cancel_algo_order(['20210510-154908-999949'])
 #{'accepted': ['20210510-154908-999949'], 'rejected': []}
 ```
 
-## 合约-USDT本位永续合约例子 (demo_swap_api.py)  
+## 合约交易-USDT本位永续合约例子 (demo_swap_api.py)  
 
 ```python
+from huobi_swap_api import HuobiSwap
+swap = HuobiSwap(URL, ACCESS_KEY, SECRET_KEY)
 
 #获取合约最高限价和最低限价,用来限制合约下单时的价格范围
 price_limit = swap.get_contract_price_limit(contract_code='BTT-USDT')
