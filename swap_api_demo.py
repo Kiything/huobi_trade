@@ -96,6 +96,11 @@ if __name__ == '__main__':
 
     #合约下单,该接口仅支持逐仓模式
     #根据获取的合约最高限价和最低限价设置价格 volume:张数 (1张=1000btt)
+    #开平方向
+    #开多：买入开多(direction用buy、offset用open)
+    #平多：卖出平多(direction用sell、offset用close)
+    #开空：卖出开空(direction用sell、offset用open)
+    #平空：买入平空(direction用buy、offset用close)
     swap_order = swap.send_swap_order(contract_code='btt-usdt', client_order_id='', 
                                       price=0.006950, volume=1, direction='sell', 
                                       offset='open', lever_rate=3, order_price_type='limit')
