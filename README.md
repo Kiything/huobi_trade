@@ -144,11 +144,11 @@ cancel_detail = hb.cancel_algo_order(['20210510-154908-999949'])
 #{'accepted': ['20210510-154908-999949'], 'rejected': []}
 ```
 
-## 合约-USDT本位永续例子 (demo_swap_api.py)  
+## 合约-USDT本位永续合约例子 (demo_swap_api.py)  
 
 ```python
 
-#获取合约最高限价和最低限价
+#获取合约最高限价和最低限价,用来限制合约下单时的价格范围
 price_limit = swap.get_contract_price_limit(contract_code='BTT-USDT')
 #[{'symbol': 'BTT', 'contract_code': 'BTT-USDT', 'high_limit': 0.006416, 'low_limit': 0.005806}]
 
@@ -172,12 +172,11 @@ swap_account_info = swap.get_swap_account_info('BTT-USDT')
 
 #合约下单,该接口仅支持逐仓模式
 #price:根据获取的合约最高限价和最低限价设置价格 
-#volume:张数 (1张=1000btt)
+#volume:张数 (1张=1000币)
 #direction:开平方向
 #开多：买入开多(direction用buy、offset用open) 平多：卖出平多(direction用sell、offset用close)
 #开空：卖出开空(direction用sell、offset用open) 平空：买入平空(direction用buy、offset用close)
-#lever_rate:杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单;
-#首次使用高倍杠杆(>20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(>20倍)]
+#lever_rate:杠杆倍数
 #order_price_type:订单报价类型
 
 #卖出开空
