@@ -144,7 +144,7 @@ cancel_detail = hb.cancel_algo_order(['20210510-154908-999949'])
 #{'accepted': ['20210510-154908-999949'], 'rejected': []}
 ```
 
-## USDT本位永续合约-例子 (demo_swap_api.py)  
+## 合约-USDT本位永续例子 (demo_swap_api.py)  
 
 ```python
 
