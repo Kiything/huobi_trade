@@ -17,6 +17,10 @@ class HuobiSwap:
         self.__access_key = access_key
         self.__secret_key = secret_key
 
+
+    def replace_dot(self, contract_code):
+        return contract_code.replace('.', '-')
+
     '''
     ======================
     Market data API
@@ -126,19 +130,19 @@ class HuobiSwap:
         if support_margin_mode:
             params['support_margin_mode'] = support_margin_mode
         if contract_code:
-            params['contract_code'] = contract_code
+            params['contract_code'] = self.replace_dot(contract_code)
     
         url = self.__url + '/linear-swap-api/v1/swap_contract_info'
         return self.http_get_request(url, params)
     
     
     # 获取合约指数信息
-    def get_contract_index(self, symbol):
+    def get_contract_index(self, contract_code):
         """
         参数名称	是否必须	类型	描述	取值范围
         contract_code	false	string	指数代码	"BTC-USDT","ETH-USDT"...
         """
-        params = {'symbol': symbol}
+        params = {'contract_code': self.replace_dot(contract_code)}
     
         url = self.__url + '/linear-swap-api/v1/swap_index'
         return self.http_get_request(url, params)
@@ -152,7 +156,7 @@ class HuobiSwap:
         """
         params = {}
         if contract_code:
-            params['contract_code'] = contract_code
+            params['contract_code'] = self.replace_dot(contract_code)
     
         url = self.__url + '/linear-swap-api/v1/swap_price_limit'
         return self.http_get_request(url, params)
@@ -164,7 +168,7 @@ class HuobiSwap:
         参数名称	是否必须	类型	描述	取值范围
         contract_code	false	string	合约代码	"BTC-USDT",不填查询所有合约
         """
-        params = {'contract_code': contract_code}
+        params = {'contract_code': self.replace_dot(contract_code)}
     
         url = self.__url + '/linear-swap-api/v1/swap_open_interest'
         return self.http_get_request(url, params)   
@@ -178,7 +182,7 @@ class HuobiSwap:
         type	true	string	深度类型	(150档数据) step0, step1, step2, step3, step4, step5, step14, step15（合并深度1-5,14-15）；step0时，不合并深度, (20档数据) step6, step7, step8, step9, step10, step11, step12, step13（合并深度7-13）；step6时，不合并深度
         :return:
         """
-        params = {'contract_code': contract_code,
+        params = {'contract_code': self.replace_dot(contract_code),
                   'type': type}
     
         url = self.__url + '/linear-swap-ex/market/depth'
@@ -195,7 +199,7 @@ class HuobiSwap:
         from	false	long	开始时间戳 10位 单位S	
         to	false	long	结束时间戳 10位 单位S	
         """
-        params = {'contract_code': contract_code,
+        params = {'contract_code': self.replace_dot(contract_code),
                   'period': period}
         if size:
             params['size'] = size
@@ -212,7 +216,7 @@ class HuobiSwap:
         参数名称	是否必须	类型	描述	取值范围
         contract_code	false	string	合约代码	"BTC-USDT",不填查询所有合约
         """
-        params = {'contract_code': contract_code}
+        params = {'contract_code': self.replace_dot(contract_code)}
     
         url = self.__url + '/linear-swap-ex/market/detail/merged'
         return self.http_get_request(url, params)
@@ -225,7 +229,7 @@ class HuobiSwap:
         contract_code	false	string	合约代码	"BTC-USDT",不填查询所有合约
         :return:
         """
-        params = {'contract_code': contract_code}
+        params = {'contract_code': self.replace_dot(contract_code)}
     
         url = self.__url + '/linear-swap-ex/market/trade'
         return self.http_get_request(url, params)
@@ -238,7 +242,7 @@ class HuobiSwap:
         contract_code	false	string	合约代码	"BTC-USDT",不填查询所有合约
         :return:
         """
-        params = {'contract_code': contract_code,
+        params = {'contract_code': self.replace_dot(contract_code),
                   'size' : size}
     
         url = self.__url + '/linear-swap-ex/market/history/trade'
@@ -259,7 +263,7 @@ class HuobiSwap:
         
         params = {}
         if contract_code:
-            params["contract_code"] = contract_code
+            params["contract_code"] = self.replace_dot(contract_code)
     
         request_path = '/linear-swap-api/v1/swap_account_info'
         return self.api_key_post(self.__url, request_path, params, self.__access_key, self.__secret_key)
@@ -287,7 +291,7 @@ class HuobiSwap:
         
         params = {}
         if contract_code:
-            params["contract_code"] = contract_code
+            params["contract_code"] = self.replace_dot(contract_code)
     
         request_path = '/linear-swap-api/v1/swap_position_info'
         return self.api_key_post(self.__url, request_path, params, self.__access_key, self.__secret_key)
@@ -321,7 +325,7 @@ class HuobiSwap:
                   "lever_rate": lever_rate,
                   "order_price_type": order_price_type}
         if contract_code:
-            params['contract_code'] = contract_code
+            params['contract_code'] = self.replace_dot(contract_code)
         if client_order_id:
             params['client_order_id'] = client_order_id
     
@@ -361,7 +365,7 @@ class HuobiSwap:
         contract_code	true	string	合约代码
         """
         
-        params = {"contract_code": contract_code}
+        params = {"contract_code": self.replace_dot(contract_code)}
         if order_id:
             params["order_id"] = order_id
         if client_order_id:
@@ -379,7 +383,7 @@ class HuobiSwap:
         offset	false	string	开平方向（不填默认全部）
         """
         
-        params = {"contract_code": contract_code}
+        params = {"contract_code": self.replace_dot(contract_code)}
         if direction:
             params["direction"] = direction
         if offset:
@@ -398,7 +402,7 @@ class HuobiSwap:
         contract_code	true	string	合约代码
         """
         
-        params = {"contract_code": contract_code}
+        params = {"contract_code": self.replace_dot(contract_code)}
         if order_id:
             params["order_id"] = order_id
         if client_order_id:
@@ -420,7 +424,7 @@ class HuobiSwap:
         page_size	false	int	不填默认20，不得多于50	
         """
         
-        params = {"contract_code": contract_code,
+        params = {"contract_code": self.replace_dot(contract_code),
                   "order_id": order_id,
                   "order_type": order_type,
                   "created_at": created_at}
@@ -445,7 +449,7 @@ class HuobiSwap:
         """
         
         params = {}
-        params["contract_code"] = contract_code
+        params["contract_code"] = self.replace_dot(contract_code)
         if page_index:
             params["page_index"] = page_index
         if page_size:
@@ -474,7 +478,7 @@ class HuobiSwap:
         sort_by	false	string	排序字段（降序），不填默认按照create_date降序	create_date	"create_date"：按订单创建时间进行降序，"update_time"：按订单更新时间进行降序
         """
         
-        params = {"contract_code": contract_code,
+        params = {"contract_code": self.replace_dot(contract_code),
                   "trade_type": trade_type,
                   "type": type,
                   "status": status,
@@ -503,7 +507,7 @@ class HuobiSwap:
         params = {}
         params["trade_type"] = trade_type
         params["create_date"] = create_date
-        params["contract_code"] = contract_code
+        params["contract_code"] = self.replace_dot(contract_code)
         if page_index:
             params["page_index"] = page_index
         if page_size:
