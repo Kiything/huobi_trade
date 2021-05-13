@@ -47,7 +47,7 @@ sell_json = huobi_trade.order_target(coin_code, amount)     #卖出当前持仓�
 
 
 
-## 最底层的高阶例子 (api_test.py)  
+## 最底层的高阶例子 (demo_trade_api.py)  
 ```python
 
 from huobi_trade_api import HuobiData
