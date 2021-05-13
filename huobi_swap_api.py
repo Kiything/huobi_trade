@@ -10,8 +10,9 @@ import requests
 
 #火币USDT本位永续合约接口
 class HuobiSwap:
+
     TIMEOUT = 5   # timeout in 5 seconds
-    def __init__(self,url,access_key,secret_key):
+    def __init__(self, url, access_key, secret_key):
         self.__url = url
         self.__access_key = access_key
         self.__secret_key = secret_key
