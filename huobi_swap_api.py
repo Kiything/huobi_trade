@@ -244,11 +244,6 @@ class HuobiSwap:
         url = self.__url + '/linear-swap-ex/market/history/trade'
         return self.http_get_request(url, params)
     
-    
-    
-    
-    
-    
     '''
     ======================
     Trade/Account API
@@ -283,7 +278,7 @@ class HuobiSwap:
         return self.api_key_post(self.__url, request_path, params, self.__access_key, self.__secret_key)
     
     
-    # 获取用户持仓信息(逐仓模式)
+    # 获取用户持仓信息(该接口仅支持逐仓模式)
     def get_swap_position_info(self, contract_code=''):
         """
         参数名称	是否必须	类型	描述	取值范围
@@ -297,21 +292,7 @@ class HuobiSwap:
         request_path = '/linear-swap-api/v1/swap_position_info'
         return self.api_key_post(self.__url, request_path, params, self.__access_key, self.__secret_key)
     
-    # 获取用户持仓信息(全仓模式)
-    def get_swap_cross_position_info(self, contract_code=''):
-        """
-        参数名称	是否必须	类型	描述	取值范围
-        contract_code	false	string	合约代码	"BTC-USDT"... ,如果缺省，默认返回所有合约
-        """
-        
-        params = {}
-        if contract_code:
-            params["contract_code"] = contract_code
-    
-        request_path = '/linear-swap-api/v1/swap_cross_position_info'
-        return self.api_key_post(self.__url, request_path, params, self.__access_key, self.__secret_key)
-    
-    # 合约下单,该接口仅支持逐仓模式
+    # 合约下单(该接口仅支持逐仓模式)
     def send_swap_order(self, contract_code, 
                             client_order_id, price,volume,direction,offset,
                             lever_rate,order_price_type):
@@ -349,7 +330,7 @@ class HuobiSwap:
     
     
     
-    # 合约批量下单
+    # 合约批量下单(该接口仅支持逐仓模式)
     def send_contract_batchorder(self, orders_data):
         """
         orders_data: example:
@@ -371,7 +352,7 @@ class HuobiSwap:
         return self.api_key_post(self.__url, request_path, params, self.__access_key, self.__secret_key)
     
     
-    # 撤销订单
+    # 撤销订单(该接口仅支持逐仓模式)
     def swap_cancel(self, contract_code, order_id='', client_order_id=''):
         """
         参数名称	是否必须	类型	描述	取值范围
@@ -389,7 +370,7 @@ class HuobiSwap:
         request_path = '/linear-swap-api/v1/swap_cancel'
         return self.api_key_post(self.__url, request_path, params, self.__access_key, self.__secret_key)
     
-    # 全部撤单
+    # 全部撤单(该接口仅支持逐仓模式)
     def swap_cancelall(self, contract_code, direction=None, offset=None):
         """
         参数名称	是否必须	类型	描述	取值范围
@@ -427,7 +408,7 @@ class HuobiSwap:
         return self.api_key_post(self.__url, request_path, params, self.__access_key, self.__secret_key)
     
     
-    # 获取合约订单明细信息
+    # 获取合约订单明细信息(该接口仅支持逐仓模式)
     def get_swap_order_detail(self, contract_code, order_id, order_type, created_at, page_index=None, page_size=None):
         """
         参数名称	是否必须	类型	描述	取值范围
@@ -452,7 +433,7 @@ class HuobiSwap:
         return self.api_key_post(self.__url, request_path, params, self.__access_key, self.__secret_key)
     
     
-    # 获取合约当前未成交委托
+    # 获取合约当前未成交委托(该接口仅支持逐仓模式)
     def get_swap_openorders(self, contract_code=None, page_index=None, page_size=None, sort_by=None, trade_type=0):
         """
         参数名称	是否必须	类型	描述	取值范围
@@ -478,7 +459,7 @@ class HuobiSwap:
         return self.api_key_post(self.__url, request_path, params, self.__access_key, self.__secret_key)
     
     
-    # 获取合约历史委托
+    # 获取合约历史委托(该接口仅支持逐仓模式)
     def get_swap_hisorders(self, contract_code, trade_type, type, status, create_date,
                                     page_index=None, page_size=None, sort_by=None):
         """
@@ -508,7 +489,7 @@ class HuobiSwap:
         request_path = '/linear-swap-api/v1/swap_hisorders'
         return self.api_key_post(self.__url, request_path, params, self.__access_key, self.__secret_key)
 
-    #【逐仓】获取历史成交记录
+    #获取历史成交记录(该接口仅支持逐仓模式)
     def get_swap_matchresults(self, contract_code=None, trade_type=0, create_date=10, page_index=None, page_size=None):
         """
         参数名称	是否必须	类型	描述	取值范围

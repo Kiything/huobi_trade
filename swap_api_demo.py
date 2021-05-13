@@ -10,10 +10,6 @@ from huobi_swap_api import HuobiSwap
 # 如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn
 URL = 'http://api.hbdm.vn'  
 
-# 输入自己的access_key和secret_key
-ACCESS_KEY = '43969009-e56cd0ba-045a311a-dbuqg6hkte'
-SECRET_KEY = '8f7ac255-582f7bd0-ee92e105-03286'
-
 if __name__ == '__main__':
     swap = HuobiSwap(URL, ACCESS_KEY, SECRET_KEY)
 
