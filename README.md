@@ -232,3 +232,5 @@ swap_position_info = swap.get_swap_position_info()
 
 ![加入群聊](https://github.com/mpquant/huobi_intf/blob/main/img/qrcode.png) 
 
+> #### 数字货币量化交易研究大群, 股市程序化交易, 圈内大咖量化策略分享
+> #### 全是干货，无闲聊 ，物以类聚, 人以群分，一起感受思维碰撞的力量 !
