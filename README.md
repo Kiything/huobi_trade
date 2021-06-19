@@ -32,7 +32,7 @@ usdt_balance = huobi_trade.trade.get_balance('usdt')        #查询稳定币usdt
 
 coin_code = 'btc.usdt'                                      #定义交易对 
 init_money = 10.00                                          #买入金额(单位:usdt)
-buy_json = huobi_trade.order_value(coin_code, init_money)   #用1000USDT 买入btc
+buy_json = huobi_trade.order_value(coin_code, init_money)   #用10USDT 买入btc
 #  buy_json 返回字典类型，买入成交回报：
 # {'单号':'2722295','成交数量':0.000177,'成交金额':'10.0000','扣手续费':3.562403,'平均价格':56497.18}
 
