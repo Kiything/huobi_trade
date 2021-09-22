@@ -70,19 +70,19 @@ if __name__ == '__main__':
     # usdt_balance = huobi_trade.trade.get_balance('usdt')        #查询稳定币usdt的余额
     cny = huobi_trade.trade.get_amount_valuation('CNY')
 
-    print('当前账户余额为%s元:' + str(cny))
+    print('当前账户余额为%s元:' %str(cny))
    
-    #coin_code = 'btc.usdt'                                      #定义交易对 
-    #init_money = 10.00                                            #买入金额(单位:usdt)
-    #buy_json = huobi_trade.order_value(coin_code, init_money)   #用10.00USDT 买入btc
+    coin_code = 'spa.usdt'                                      #定义交易对 
+    # init_money = 10.00                                            #买入金额(单位:usdt)
+    # buy_json = huobi_trade.order_value(coin_code, init_money)   #用10.00USDT 买入btc
    
     #  buy_json 返回字典类型，买入成交回报：
     # {'单号':'2722295','成交数量':0.000177,'成交金额':'10.0000','扣手续费':3.562403,'平均价格':56497.18}
 
-    #amount = huobi_trade.trade.get_amount(coin_code)            #查询btc.usdt交易对的数量,有精度控制
-    #print('当前账户%s数量:' % (coin_code) + str(amount))
+    amount = huobi_trade.trade.get_amount(coin_code)            #查询btc.usdt交易对的数量,有精度控制
+    print('当前账户 "spa.usdt"的数量%s:' %str(amount))
 
-    #sell_json = huobi_trade.order_target(coin_code, amount)     #卖出当前持仓所有btc
+    # sell_json = huobi_trade.order_target(coin_code, amount)     #卖出当前持仓所有btc
     # sell_json 返回字典类型，卖出成交回报：
     # {'单号':'2722297','成交数量': 0.000177,'成交金额': 9.9327,'扣手续费':0.019865,'平均价格': 56229.7}
 
